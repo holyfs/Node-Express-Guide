@@ -12,6 +12,7 @@ const adminRoutes = require('./routes/admin.js');
 const shopRoutes = require('./routes/shop.js');
 const notFound = require('./routes/not-found.js');
 
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
