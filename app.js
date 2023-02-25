@@ -3,6 +3,8 @@ const path = require('path');
 
 const bodyParser = require('body-parser');
 
+const sequelize = require('./util/database.js');
+
 const app = express();
 
 app.set('view engine', 'pug');
@@ -20,5 +22,12 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(notFound);
 
-
-app.listen(3000);
+sequelize
+    .sync()
+    .then(result => {
+//        console.log(result);
+        app.listen(3000);
+    })
+    .catch(err => {
+        console.error(err);
+    })
