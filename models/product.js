@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database.js');
 
-exports.Product = sequelize
+const Product = sequelize
   .define('product', {
     id: {
       type: Sequelize.INTEGER,
@@ -24,3 +24,4 @@ exports.Product = sequelize
       allowNull: false
     }
   });
+module.exports = Product;
