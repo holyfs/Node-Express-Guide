@@ -4,6 +4,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const sequelize = require('./util/database.js');
+const Product = require('./models/product.js');
+const User = require('./models/user.js');
+
 
 const app = express();
 
@@ -22,10 +25,23 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(notFound);
 
+Product.belongsTo(User, { constraits: true, onDelete: 'CASCADE' });
+User.hasMany(Product);
+
 sequelize
-    .sync()
+    .sync({ force: true })
     .then(result => {
-//        console.log(result);
+        return User.findByPk(1);
+        //        console.log(result);
+    })
+    .then(user => {
+        if (!user) {
+            User.create({ name: 'Ely', email: 'test@test.es' })
+        }
+        return user;
+    })
+    .then(user=>{
+        console.log(user);
         app.listen(3000);
     })
     .catch(err => {
