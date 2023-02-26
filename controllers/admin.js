@@ -10,11 +10,11 @@ exports.postAddProduct = (req, res, next)=>{
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description.trim();
-    Product.create({
+    req.user.createProduct({
         title: title,
         price: price,
         imageUrl: imageUrl,
-        description: description
+        description: description,
     })
     .then(result=>{
         //console.log(result);
