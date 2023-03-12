@@ -1,21 +1,20 @@
 const Product = require('../models/product.js');
 
 exports.getAddProduct = (req, res, next)=>{
-    res.render('admin/edit-product', {pageTitle:'Add Product', path:'/admin/add-product', editing:false});    
+    res.render('admin/edit-product', {
+        pageTitle:'Add Product', 
+        path:'/admin/add-product', 
+        editing:false
+    });    
 };
 
 exports.postAddProduct = (req, res, next)=>{
-    /*     const obj = JSON.parse(JSON.stringify(req.body)) */
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description.trim();
-    req.user.createProduct({
-        title: title,
-        price: price,
-        imageUrl: imageUrl,
-        description: description,
-    })
+    const product = new Product(title,price,description,imageUrl);
+    product.save()
     .then(result=>{
         //console.log(result);
         console.log('Created Product');
@@ -24,7 +23,7 @@ exports.postAddProduct = (req, res, next)=>{
     .catch(err=>{console.error(err)});
 };
 
-exports.getEditProduct = (req, res, next) => {
+/* exports.getEditProduct = (req, res, next) => {
     const editMode=req.query.edit;
     if(!editMode){
         return res.redirect('/');
@@ -91,4 +90,4 @@ exports.postDeleteProduct=(req, res, next)=>{
             res.redirect('/admin/products');
         })
         .catch(err=>{console.error(err)})
-}
+} */
