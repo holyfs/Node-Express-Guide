@@ -65,7 +65,7 @@ class Product {
     db
       .collection('products')
       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
-      .then(result=>{
+      .then(result => {
         console.log('Deleted')
       })
       .catch(err => { console.error(err) })
