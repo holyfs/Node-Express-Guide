@@ -36,5 +36,5 @@ block content
                     label(for="description") Description
                     textarea(type="text", name="description", rows="5") #{product.description}
                 .form-control
-                    input(type="hidden", value=`${product._id}`, name="productId")                  
+                    input(type="hidden", value=`${product.id}`, name="productId")                  
                 button.btn(type="submit") Update Product
