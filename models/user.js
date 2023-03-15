@@ -19,6 +19,13 @@ class User {
     return db
       .collection('users')
       .findOne({ _id: new mongodb.ObjectId(id) })
+      .then(user=>{
+        console.log(user);
+        return user;
+      })
+      .catch(err=>{
+        console.error(err);
+      })
   }
 }
 
