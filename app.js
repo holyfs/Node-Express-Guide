@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser');
-const User = require('./models/user');
+/* const User = require('./models/user'); */
 
 
 const app = express();
@@ -33,7 +33,7 @@ app.use(shopRoutes);
 app.use(notFound);
 
 mongoose
-    .connect('mongodb+srv://elycruzdev:o6AHCTZ5LnRsyj0b@cluster0.detozxi.mongodb.net/test?readPreference=primary')
+    .connect('mongodb+srv://elycruzdev:o6AHCTZ5LnRsyj0b@cluster0.detozxi.mongodb.net/shop?readPreference=primary')
     .then(result=>{
         app.listen(3000);
     }).catch(err=>{
